@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday Afsha ❤</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+    body{overflow:hidden;background:#000}
+
+    /* PASSWORD SCREEN */
+    #lock{
+      position:fixed;inset:0;display:flex;align-items:center;justify-content:center;
+      background:linear-gradient(135deg,#ff758c,#ff7eb3);z-index:9999;color:#fff
+    }
+    .lock-box{text-align:center}
+    .lock-box h1{font-size:2.5rem;margin-bottom:15px}
+    .lock-box input{
+      padding:14px 20px;border:none;border-radius:30px;font-size:1rem;outline:none
+    }
+    .lock-box button{
+      margin-left:10px;padding:14px 25px;border:none;border-radius:30px;
+      background:#000;color:#fff;font-weight:600;cursor:pointer
+    }
+
+    .slider{display:flex;width:600vw;height:100vh;transition:transform 1s ease-in-out}
+    .slide{
+      width:100vw;height:100vh;display:flex;align-items:center;justify-content:center;
+      text-align:center;color:#fff;position:relative;padding:20px
+    }
+    .slide::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.55);z-index:0}
+    .content{position:relative;z-index:1;max-width:900px}
+
+    /* BIG IMAGE */
+    .content img{
+      width:85vw;max-width:420px;border-radius:30px;
+      box-shadow:0 25px 60px rgba(0,0,0,.7);margin-bottom:25px
+    }
+
+    h1{font-size:2.6rem;margin-bottom:12px}
+    p{font-size:1.25rem}
+
+    .next-btn{
+      margin-top:25px;padding:16px 40px;border:none;border-radius:40px;
+      background:linear-gradient(45deg,#ff4d6d,#ffd166);font-weight:600;cursor:pointer
+    }
+
+    /* BACKGROUNDS */
+    .s1{background:linear-gradient(135deg,#ff758c,#ff7eb3)}
+    .s2{background:linear-gradient(135deg,#667eea,#764ba2)}
+    .s3{background:linear-gradient(135deg,#43cea2,#185a9d)}
+    .s4{background:linear-gradient(135deg,#f7971e,#ffd200)}
+    .s5{background:linear-gradient(135deg,#ee0979,#ff6a00)}
+    .s6{background:linear-gradient(135deg,#141e30,#243b55)}
+
+    /* CAKE */
+    .cake{margin:20px auto;width:160px;height:100px;background:#ffb703;border-radius:10px;position:relative}
+    .cake::before{content:"";position:absolute;top:-40px;left:65px;width:30px;height:40px;background:#fff;border-radius:5px}
+    .flame{position:absolute;top:-60px;left:72px;width:16px;height:25px;background:orange;border-radius:50%;animation:flicker 1s infinite}
+    @keyframes flicker{0%{transform:scale(1)}50%{transform:scale(.8)}100%{transform:scale(1)}}
+
+    audio{display:none}
+  </style>
+</head>
+<body>
+
+<!-- PASSWORD SCREEN -->
+<div id="lock">
+  <div class="lock-box">
+    <h1>Only For Afsha ❤</h1>
+    <input id="pass" type="password" placeholder="Enter love password">
+    <button onclick="unlock()">Open</button>
+    <p style="margin-top:10px;font-size:.9rem">Hint: your name 💖</p>
+  </div>
+</div>
+
+<audio id="bgMusic" src="music.mp3" loop></audio>
+
+<div class="slider" id="slider">
+
+  <section class="slide s1">
+    <div class="content">
+      <img src="photo1.jpg">
+      <h1 id="type"></h1>
+      <p>You design websites… and unknowingly designed my life ❤</p>
+    </div>
+  </section>
+
+  <section class="slide s2">
+    <div class="content">
+      <img src="photo2.jpg">
+      <h1>Clean Code, Pure Love</h1>
+      <p>If love was code, yours would be perfectly optimized 💖</p>
+    </div>
+  </section>
+
+  <section class="slide s3">
+    <div class="content">
+      <img src="photo3.jpg">
+      <h1>No Bugs With You</h1>
+      <p>Every moment with you runs smooth & error‑free 🥰</p>
+    </div>
+  </section>
+
+  <section class="slide s4">
+    <div class="content">
+      <img src="photo4.jpg">
+      <h1>Responsive Forever</h1>
+      <p>No matter the screen size, my love fits you perfectly 📱</p>
+    </div>
+  </section>
+
+  <section class="slide s5">
+    <div class="content">
+      <img src="photo5.jpg">
+      <h1>Deployed in My Heart</h1>
+      <p>This love is live, secure & forever hosted 💞</p>
+    </div>
+  </section>
+
+  <section class="slide s6">
+    <div class="content">
+      <img src="photo6.jpg">
+      <h1>Happy Birthday My Love Afsha 🎉</h1>
+      <div class="cake"><div class="flame"></div></div>
+      <p>You are my favorite project, today & always 💖</p>
+    </div>
+  </section>
+
+</div>
+
+<script>
+  let current=0;
+  const slider=document.getElementById('slider');
+  const music=document.getElementById('bgMusic');
+
+  /* PASSWORD */
+  function unlock(){
+    const p=document.getElementById('pass').value.toLowerCase();
+    if(p==='afsha'){
+      document.getElementById('lock').style.display='none';
+      music.play().catch(()=>{});
+      typeText();
+      autoSlide();
+    } else alert('Wrong password 💔');
+  }
+
+  /* TYPING EFFECT */
+  const text="I Love You Afsha 💖";
+  let i=0;
+  function typeText(){
+    if(i<text.length){
+      document.getElementById('type').innerHTML+=text.charAt(i);
+      i++;setTimeout(typeText,120);
+    }
+  }
+
+  /* AUTO SLIDE */
+  function autoSlide(){
+    setInterval(()=>{
+      if(current<5){
+        current++;
+        slider.style.transform=`translateX(-${current*100}vw)`;
+        if(current===5){
+          confetti({particleCount:200,spread:120,origin:{y:.6}});
+        }
+      }
+    },5000);
+  }
+</script>
+
+</body>
+</html>
